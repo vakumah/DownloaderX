@@ -9,11 +9,11 @@ const __dirname = dirname(__filename);
 
 export async function handleYouTubeDownloader(sock, from, url) {
   if (!url.startsWith('http')) {
-    await sock.sendMessage(from, { text: '❌ URL tidak valid' });
+    await sock.sendMessage(from, { text: '❌ Invalid URL' });
     return;
   }
 
-  await sock.sendMessage(from, { text: '📥 Mengunduh video YouTube...' });
+  await sock.sendMessage(from, { text: '📥 Download YouTube videos...' });
 
   const tempFile = `${__dirname}/tmp_yt.mp4`;
 
@@ -29,6 +29,6 @@ export async function handleYouTubeDownloader(sock, from, url) {
     fs.unlinkSync(tempFile);
   } catch (err) {
     console.error(err);
-    await sock.sendMessage(from, { text: '❌ Gagal mengunduh video YouTube' });
+    await sock.sendMessage(from, { text: '❌ Failed to download YouTube videos' });
   }
 }
